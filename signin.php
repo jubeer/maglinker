@@ -44,69 +44,48 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
         </div>
     </nav>
     <!--- Header #1 -->
-    <div class="row">
-        <div class="col-12-sm">
+    <div class="row" id="bigCallout">
+        <div class="col-12">
 
             <!-- Visible only on small devices -->
             <div class="well well-small visible-sm">
-                <a href="" class="btn btn-large btn-block btn-default"><span class="glyphicon glyphicon-phone"></span> Give us a call!</a>
+                <a href="" class="btn btn-large btn-block btn-default"><span class="glyphicon glyphicon-phone"></span>
+                    Give us a call!</a>
             </div><!-- end well-small -->
 
             <div class="well">
                 <div class="page-header">
-                    <h1>Check our awesome website! <small>Keep your products in one place.</small></h1>
+                    <h1>A Fancy Header
+                        <small>A subheader for extra awesome.</small>
+                    </h1>
                 </div><!-- end page-header -->
 
-                <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your products.<br />You can check the tutorial video or just sign up today!</p>
+                <p class="lead">Some solid leading copy will help get your users engaged. Use this area to come up with
+                    something real nice. Know what I'm sayin?</p>
 
-                <a href="signup.php" class="btn btn-large btn-primary">Sing up today</a>
-                <a href="tutorial.php" class="btn btn-large btn-link">or check our presentation video first</a>
+                <a href="" class="btn btn-large btn-primary" id="alertMe">Click a nice big button</a>
+                <a href="" class="btn btn-large btn-link">or a secondary link</a>
             </div><!-- end well -->
 
         </div><!-- end col-12 -->
     </div><!-- end bigCallout -->
+    <div class="container">
 
+        <form class="form-signin" action="login.php" method="post">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputLogin" class="sr-only">Login</label>
+            <input type="text" name="login" class="form-control" placeholder="Login">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="pass" class="form-control" placeholder="Password">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <?php
 
-    <div class="row">
-        <div class="col-sm-4 feature">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Markup with HTML5</h3>
-                </div><!-- end panel-heading -->
-                <img src="images/badge_html5.jpg" alt="HTML5" class="img-circle">
+            if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
 
-                <p>90's authentic single-origin coffee stumptown Pinterest. Fap aesthetic dreamcatcher pickled Brooklyn irony.</p>
+            ?>
+        </form>
 
-                <a href="https://www.udemy.com/build-beautiful-html5-website/" target="_blank" class="btn btn-warning btn-block">Learn to code HTML5</a>
-            </div><!-- end panel -->
-        </div><!-- end feature -->
-
-        <div class="col-sm-4 feature">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Style with CSS3</h3>
-                </div><!-- end panel-heading -->
-                <img src="images/badge_css3.jpg" alt="CSS3" class="img-circle">
-
-                <p>90's authentic single-origin coffee stumptown Pinterest. Fap aesthetic dreamcatcher pickled Brooklyn irony.</p>
-
-                <a href="https://www.udemy.com/build-beautiful-html5-website/" target="_blank" class="btn btn-danger btn-block">Style it up with CSS3</a>
-            </div><!-- end panel -->
-        </div><!-- end feature -->
-
-        <div class="col-sm-4 feature">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Framework by Bootstrap 3</h3>
-                </div><!-- end panel-heading -->
-                <img src="images/badge_bootstrap.jpg" alt="Bootstrap 3" class="img-circle">
-
-                <p>90's authentic single-origin coffee stumptown Pinterest. Fap aesthetic dreamcatcher pickled Brooklyn irony.</p>
-
-                <a href="http://getbootstrap.com/" target="_blank" class="btn btn-info btn-block">More Bootstrap</a>
-            </div><!-- end panel -->
-        </div><!-- end feature -->
-    </div><!-- end features -->
+    </div>
 </div>
 <footer>
     <div class="container">
@@ -115,11 +94,11 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
                 <h4>About Us</h4>
                 <p>If you have any further questions contact us:</p>
                 <p>
-                    Phone: (+48) 881 942 510 <br />
-                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br /><br />
-                    Adress <br />
-                    Wilkońskich 5 <br />
-                    62-020 Swarzędz <br />
+                    Phone: (+48) 881 942 510 <br/>
+                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br/><br/>
+                    Adress <br/>
+                    Wilkońskich 5 <br/>
+                    62-020 Swarzędz <br/>
                     PL, Poland
                 </p>
             </div><!-- end col-sm-4 -->
