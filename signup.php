@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+session_start();
 
 /*
     if (isset($_POST['email']))
@@ -156,63 +156,66 @@
 </head>
 <title>MagLinkere.pl - Account Creation</title>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">MagLinker.pl</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
-                        class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Page 1-1</a></li>
-                    <li><a href="#">Page 1-2</a></li>
-                    <li><a href="#">Page 1-3</a></li>
-                </ul>
-            </li>
-            <li><a href="#">API</a></li>
-            <li><a href="panel.php">Statistics</a></li>
-            <li><a href="contact.php">Contact</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-        </ul>
-    </div>
-</nav>
 <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.php">MagLinker.pl</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Page 1-1</a></li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">API</a></li>
+                <li><a href="panel.php">Statistics</a></li>
+                <li><a href="contact.php">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
 
-    <form name="validForm" class="form-signin" method="post" onsubmit="return validateform()">
-        <h2 class="form-signin-heading">Please fill the form!</h2>
-        <label for="inputLogin" class="sr-only">Login</label>
-        <input type="text" name="login" class="form-control" placeholder="Login"><span id="nameErrMsg" class="error"></span>
-        <?php /*if(isset($_SESSION['e_login']))
+        <form name="validForm" class="form-signin" method="post" onsubmit="return validateform()">
+            <h2 class="form-signin-heading">Please fill the form!</h2>
+            <label for="inputLogin" class="sr-only">Login</label>
+            <input type="text" name="login" class="form-control" placeholder="Login"><span id="nameErrMsg"
+                                                                                           class="error"></span>
+            <?php /*if(isset($_SESSION['e_login']))
         {
             echo '<div class="error">'.$_SESSION['e_login'].'</div>';
             unset($_SESSION['e_login']);
         }*/
-        ?>
-        <label for="inputPassword1" class="sr-only">Your password</label>
-        <input type="password" name="pass1" class="form-control" placeholder="Your password">
-        <label for="inputPassword2" class="sr-only">Confirm password</label>
-        <input type="password" name="pass2" class="form-control" placeholder="Confirm password">
-        <label for="inputEmail" class="sr-only">E-mail</label>
-        <input type="text" name="email" class="form-control" placeholder="E-mail">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="reg" /> Agree terms.
-            </label>
-        </div>
-        <div class="g-recaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
+            ?>
+            <label for="inputPassword1" class="sr-only">Your password</label>
+            <input type="password" name="pass1" class="form-control" placeholder="Your password">
+            <label for="inputPassword2" class="sr-only">Confirm password</label>
+            <input type="password" name="pass2" class="form-control" placeholder="Confirm password">
+            <label for="inputEmail" class="sr-only">E-mail</label>
+            <input type="text" name="email" class="form-control" placeholder="E-mail">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="reg"/> Agree terms.
+                </label>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <?php
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <?php
 
-        if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
+            if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
 
-        ?>
-    </form>
+            ?>
+        </form>
 
+    </div>
 </div>
 <footer>
     <div class="container">
@@ -221,11 +224,11 @@
                 <h4>About Us</h4>
                 <p>If you have any further questions contact us:</p>
                 <p>
-                    Phone: (+48) 881 942 510 <br />
-                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br /><br />
-                    Adress <br />
-                    Wilkońskich 5 <br />
-                    62-020 Swarzędz <br />
+                    Phone: (+48) 881 942 510 <br/>
+                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br/><br/>
+                    Adress <br/>
+                    Wilkońskich 5 <br/>
+                    62-020 Swarzędz <br/>
                     PL, Poland
                 </p>
             </div><!-- end col-sm-4 -->
