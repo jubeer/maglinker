@@ -57,7 +57,7 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
                     <h1>Check our awesome website! <small>Keep your products in one place.</small></h1>
                 </div><!-- end page-header -->
 
-                <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your products.<br />You can check the tutorial video or just sign up today!</p>
+                <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your products.<br />You can check the tutorial video and just sign up today!</p>
 
                 <a href="signup.php" class="btn btn-large btn-primary">Join us today</a>
                 <a href="tutorial.php" class="btn btn-large btn-link">or check our video tutorial first</a>
