@@ -154,12 +154,12 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="js/validateform.js"></script>
 </head>
-<title>Marlive Project - Account Creation</title>
+<title>MagLinkere.pl - Account Creation</title>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">wsobiak.pl</a>
+            <a class="navbar-brand" href="index.php">MagLinker.pl</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
@@ -214,8 +214,48 @@
     </form>
 
 </div>
-<footer class="container-fluid text-center">
-    <p>© 2016 Marlive-insider.pl All Rights Reserved.</p>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>About Us</h4>
+                <p>If you have any further questions contact us:</p>
+                <p>
+                    Phone: (+48) 881 942 510 <br />
+                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br /><br />
+                    Adress <br />
+                    Wilkońskich 5 <br />
+                    62-020 Swarzędz <br />
+                    PL, Poland
+                </p>
+            </div><!-- end col-sm-4 -->
+            <div class="col-sm-4">
+                <h4>Navigation</h4>
+                <ul class="unstyled">
+                    <li><a href="#">Home Page</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Links</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div><!-- end col-sm-2 -->
+
+            <div class="col-sm-4">
+                <h4>Follow Us</h4>
+                <ul class="unstyled">
+                    <li><a href="#"><span class="icon-twitter-1"></span> Twitter</a></li>
+                    <li><a href="#"><span class="icon-facebook-1"></span> Facebook</a></li>
+                    <li><a href="#"><span class="icon-gplus"></span> Google Plus</a></li>
+                </ul>
+            </div><!-- end col-sm-2 -->
+        </div><!-- end row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h7>Copyright &copy; 2016 MagLinker.pl</h7>
+                </div>
+            </div><!-- end col-sm-2 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
 </footer>
 </body>
 </html>

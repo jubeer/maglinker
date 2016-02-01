@@ -19,12 +19,12 @@ if (!isset($_SESSION['logged']))
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-<title>Marlive Project</title>
+<title>MagLinker.pl Project</title>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Marlive-Insider.pl</a>
+            <a class="navbar-brand" href="index.php">MagLinker.pl</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
@@ -43,46 +43,7 @@ if (!isset($_SESSION['logged']))
         </ul>
     </div>
 </nav>
-<?php
-$goal = 0;
-$active = 0;
-$y_profits = 0;
-$t_profits = 0;
-$y_avgp = 0;
-$user_id = '10805'; //Your Marlive account ID
-$api_key = 'CFA8C199'; //Your API's KEY
-$secret = '7877983069CBCF7B'; //Your API's secret code
 
-$URL = 'https://marlive.com/api/list_deposits.php';
-$data = array(
-
-    'user_id' => $user_id,
-    'api_key' => $api_key,
-    'secret' => $secret
-);
-$URL = $URL . '?' . http_build_query($data, '', '&');
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $URL);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-ob_start();
-$r = curl_exec($ch);
-ob_end_clean();
-curl_close($ch);
-$result = json_decode($r);
-//var_dump($result);
-
-$BALANCE_URL = "https://marlive.com/api/balance.php";
-$BALANCE_URL = $BALANCE_URL.'?'.http_build_query($data, '', '&');
-$chb = curl_init ();
-curl_setopt ($chb, CURLOPT_URL, $BALANCE_URL);
-curl_setopt ($chb, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt ($chb, CURLOPT_RETURNTRANSFER, true);
-ob_start();
-$rb = curl_exec ($chb);
-ob_end_clean();
-curl_close ($chb);
-$result_bal = json_decode($rb);?>
 <div class="contrainer">
     <div class="row">
         <div class="col-md-12 jumbotron">
@@ -163,8 +124,48 @@ foreach ($result as $object): ?>
 <?php
 echo "</table></div>";
 ?>
-<footer class="container-fluid text-center">
-    <p>© 2016 Marlive-insider.pl All Rights Reserved.</p>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>About Us</h4>
+                <p>If you have any further questions contact us:</p>
+                <p>
+                    Phone: (+48) 881 942 510 <br />
+                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br /><br />
+                    Adress <br />
+                    Wilkońskich 5 <br />
+                    62-020 Swarzędz <br />
+                    PL, Poland
+                </p>
+            </div><!-- end col-sm-4 -->
+            <div class="col-sm-4">
+                <h4>Navigation</h4>
+                <ul class="unstyled">
+                    <li><a href="#">Home Page</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Links</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div><!-- end col-sm-2 -->
+
+            <div class="col-sm-4">
+                <h4>Follow Us</h4>
+                <ul class="unstyled">
+                    <li><a href="#"><span class="icon-twitter-1"></span> Twitter</a></li>
+                    <li><a href="#"><span class="icon-facebook-1"></span> Facebook</a></li>
+                    <li><a href="#"><span class="icon-gplus"></span> Google Plus</a></li>
+                </ul>
+            </div><!-- end col-sm-2 -->
+        </div><!-- end row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h7>Copyright &copy; 2016 MagLinker.pl</h7>
+                </div>
+            </div><!-- end col-sm-2 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
 </footer>
 </body>
 </html>

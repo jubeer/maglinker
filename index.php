@@ -16,7 +16,7 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
     <link rel="stylesheet" href="css/css.css">
     <link href="https://file.myfontastic.com/wm2GVTEBGPeHkdyNEkiD2P/icons.css" rel="stylesheet">
 </head>
-<title>Marlive Project Testing</title>
+<title>MagLinker.pl Project - Home Page</title>
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top">
