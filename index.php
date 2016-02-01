@@ -59,8 +59,8 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
 
                 <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your products.<br />You can check the tutorial video or just sign up today!</p>
 
-                <a href="signup.php" class="btn btn-large btn-primary">Sing up today</a>
-                <a href="tutorial.php" class="btn btn-large btn-link">or check our presentation video first</a>
+                <a href="signup.php" class="btn btn-large btn-primary">Join us today</a>
+                <a href="tutorial.php" class="btn btn-large btn-link">or check our video tutorial first</a>
             </div><!-- end well -->
 
         </div><!-- end col-12 -->
@@ -71,11 +71,11 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
         <div class="col-sm-4 feature">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Online Storage</h3>
+                    <h3 class="panel-title">Online WAREHOUSE</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_wh.jpg" alt="warehouse" class="img-circle">
 
-                <p>90's authentic single-origin coffee stumptown Pinterest. Fap aesthetic dreamcatcher pickled Brooklyn irony.</p>
+                <p>You can create many warehouses to keep order of your products. Simply go directly to warehouse creation form!</p>
 
                 <a href="addwarehouse.php" target="_blank" class="btn btn-warning btn-block">Create new WAREHOUSE</a>
             </div><!-- end panel -->
@@ -84,24 +84,24 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
         <div class="col-sm-4 feature">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Style with CSS3</h3>
+                    <h3 class="panel-title">Management PANEL</h3>
                 </div><!-- end panel-heading -->
-                <img src="images/badges_wh.jpg" alt="CSS3" class="img-circle">
+                <img src="images/badges_mg.jpg" alt="Management" class="img-circle">
 
-                <p>90's authentic single-origin coffee stumptown Pinterest. Fap aesthetic dreamcatcher pickled Brooklyn irony.</p>
+                <p>The easiest way to manage your products. Check our management panel!</p>
 
-                <a href="panel.php" class="btn btn-danger btn-block">Manage your WAREHOUSE</a>
+                <a href="panel.php" target="_blank" class="btn btn-danger btn-block">Manage your WAREHOUSE</a>
             </div><!-- end panel -->
         </div><!-- end feature -->
 
         <div class="col-sm-4 feature">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Framework by Bootstrap 3</h3>
+                    <h3 class="panel-title">Many PRODUCTS</h3>
                 </div><!-- end panel-heading -->
-                <img src="images/badges_wh.jpg" alt="Bootstrap 3" class="img-circle">
+                <img src="images/badges_ap.jpg" alt="New Product" class="img-circle">
 
-                <p>90's authentic single-origin coffee stumptown Pinterest. Fap aesthetic dreamcatcher pickled Brooklyn irony.</p>
+                <p>Add a new product to your warehouse, keep all information about it in one place.</p>
 
                 <a href="addproduct.php" target="_blank" class="btn btn-info btn-block">Add a new PRODUCTS</a>
             </div><!-- end panel -->
