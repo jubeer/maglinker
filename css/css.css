@@ -22,7 +22,18 @@ footer {
     font-size: 11px;
     padding: 20px;
 }
-
+.well {
+    margin: 20px 0;
+}
+.well .page-header {
+     margin-top: 0;
+}
+.feature {
+    text-align: center;
+}
+.well .page-header h1 {
+    margin-top: 0;
+}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
