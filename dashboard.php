@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
-    header('Location: panel.php');
-    exit();
-}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -30,8 +26,16 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
                 <li><a href="contact.php">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> My Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="panel.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="addwarehouse.php"><span class="glyphicon glyphicon-home"></span> Add Warehouse</a></li>
+                        <li><a href="addproduct.php"><span class="glyphicon glyphicon-shopping-cart"></span> Add Product</a></li>
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -51,7 +55,6 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
 
         </div><!-- end col-12 -->
     </div><!-- end bigCallout -->
-
 
     <div class="row">
         <div class="col-sm-4 feature">

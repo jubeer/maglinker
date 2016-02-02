@@ -22,7 +22,7 @@ if ($connection->connect_errno != 0) {
 
 
     if ($result = @$connection->query(
-        sprintf("SELECT * FROM users WHERE login='%s' AND password='%s'",
+        sprintf("SELECT * FROM users WHERE username='%s' AND pass='%s'",
             mysqli_real_escape_string($connection, $user),
             mysqli_real_escape_string($connection, $pass)))
     ) {
@@ -31,12 +31,12 @@ if ($connection->connect_errno != 0) {
         if ($how_much > 0) {
             $_SESSION['logged'] = true;
             $row = $result->fetch_assoc();
-            $_SESSION['ID'] = $row['ID'];
-            $_SESSION['login'] = $row['login'];
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
 
             unset($_SESSION['error']);
             $result->close();
-            header('Location: panel.php');
+            header('Location: dashboard.php');
 
 
         } else {

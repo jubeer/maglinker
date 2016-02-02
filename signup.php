@@ -2,7 +2,7 @@
 
 session_start();
 
-/*
+
     if (isset($_POST['email']))
     {
         //Udana walidacja? Załóżmy , że tak!
@@ -139,82 +139,83 @@ session_start();
             echo '<br />Informacja developerska: '.$e;
         }
     }
-*/
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="text/javascript" src="js/validateform.js"></script>
+    <link href="https://file.myfontastic.com/wm2GVTEBGPeHkdyNEkiD2P/icons.css" rel="stylesheet">
 </head>
 <title>MagLinkere.pl - Account Creation</title>
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.php">MagLinker.pl</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Page 1-1</a></li>
-                        <li><a href="#">Page 1-2</a></li>
-                        <li><a href="#">Page 1-3</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">API</a></li>
-                <li><a href="panel.php">Statistics</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="about.php">About Us</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
             </ul>
         </div>
     </nav>
-    <div class="container">
-
-        <form name="validForm" class="form-signin" method="post" onsubmit="return validateform()">
-            <h2 class="form-signin-heading">Please fill the form!</h2>
-            <label for="inputLogin" class="sr-only">Login</label>
-            <input type="text" name="login" class="form-control" placeholder="Login"><span id="nameErrMsg"
-                                                                                           class="error"></span>
-            <?php /*if(isset($_SESSION['e_login']))
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+            <form name="validForm" class="form-signin" method="post" onsubmit="return validateform()">
+                <h2 class="form-signin-heading">Please fill the form!</h2>
+                <label for="inputLogin" class="sr-only">Login</label>
+                <input type="text" name="login" class="form-control" placeholder="Username"><span id="nameErrMsg"
+                                                                                                  class="error"></span>
+                <?php /*if(isset($_SESSION['e_login']))
         {
             echo '<div class="error">'.$_SESSION['e_login'].'</div>';
             unset($_SESSION['e_login']);
         }*/
-            ?>
-            <label for="inputPassword1" class="sr-only">Your password</label>
-            <input type="password" name="pass1" class="form-control" placeholder="Your password">
-            <label for="inputPassword2" class="sr-only">Confirm password</label>
-            <input type="password" name="pass2" class="form-control" placeholder="Confirm password">
-            <label for="inputEmail" class="sr-only">E-mail</label>
-            <input type="text" name="email" class="form-control" placeholder="E-mail">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="reg"/> Agree terms.
-                </label>
-            </div>
-            <div class="g-recaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
+                ?>
+                <label for="inputPassword1" class="sr-only">Password</label>
+                <input type="password" name="pass1" class="form-control" placeholder="Your password">
+                <label for="inputPassword2" class="sr-only">Confirm password</label>
+                <input type="password" name="pass2" class="form-control" placeholder="Confirm password">
+                <label for="inputEmail" class="sr-only">E-mail</label>
+                <input type="text" name="email" class="form-control" placeholder="E-mail">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="reg"/> Agree terms.
+                    </label>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <?php
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <?php
 
-            if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
+                if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
 
-            ?>
-        </form>
-
+                ?>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <br/><br/>
+            <h4><span class="glyphicon glyphicon-map-marker"></span> Our Location
+                <small>Visit us if you want to!</small>
+            </h4>
+            <br/>
+            <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.6249297394806!2d17.076156556604747!3d52.40117668790244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4704593117239869%3A0x3fed5b30f60be13!2sWilko%C5%84skich+5%2C+62-020+Swarz%C4%99dz%2C+Polska!5e0!3m2!1spl!2sca!4v1454354171280"></iframe>
+            <br/>
+        </div>
+        <div class="col-sm-1"></div>
     </div>
 </div>
 <footer>
@@ -235,10 +236,10 @@ session_start();
             <div class="col-sm-4">
                 <h4>Navigation</h4>
                 <ul class="unstyled">
-                    <li><a href="#">Home Page</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Links</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.php">Home Page</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </div><!-- end col-sm-2 -->
 
@@ -260,5 +261,7 @@ session_start();
         </div><!-- end row -->
     </div><!-- end container -->
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
