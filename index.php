@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
-    header('Location: panel.php');
+    header('Location: dashboard.php');
     exit();
 }
 ?>
@@ -22,8 +22,15 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="index.php">MagLinker.pl</a>
             </div>
+            <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="about.php">About Us</a></li>
@@ -33,6 +40,7 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
                 <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
             </ul>
+                </div>
         </div>
     </nav>
     <!--- Header #1 -->
@@ -55,39 +63,39 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
 
     <div class="row">
         <div class="col-sm-4 feature">
-            <div class="panel">
+            <div class="panel panel-body">
                 <div class="panel-heading">
                     <h3 class="panel-title">Online WAREHOUSE</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_wh.jpg" alt="warehouse" class="img-circle">
 
-                <p>You can create many warehouses to keep order of your products. Simply go directly to warehouse creation form!</p>
+                <p class="pad">You can create many warehouses to keep order of your products. Create one now!</p>
 
                 <a href="addwarehouse.php" target="_blank" class="btn btn-warning btn-block">Create new WAREHOUSE</a>
             </div><!-- end panel -->
         </div><!-- end feature -->
 
         <div class="col-sm-4 feature">
-            <div class="panel">
+            <div class="panel panel-body">
                 <div class="panel-heading">
                     <h3 class="panel-title">Management PANEL</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_mg.jpg" alt="Management" class="img-circle">
 
-                <p>The easiest way to manage your products. Check our management panel!</p>
+                <p class="pad">The easiest way to manage your products. Check our management panel!</p>
 
                 <a href="panel.php" target="_blank" class="btn btn-danger btn-block">Manage your WAREHOUSE</a>
             </div><!-- end panel -->
         </div><!-- end feature -->
 
         <div class="col-sm-4 feature">
-            <div class="panel">
+            <div class="panel panel-body">
                 <div class="panel-heading">
                     <h3 class="panel-title">Many PRODUCTS</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_ap.jpg" alt="New Product" class="img-circle">
 
-                <p>Add a new product to your warehouse, keep all information about it in one place.</p>
+                <p class="pad">Add a new product to your warehouse, keep all information about it in one place.</p>
 
                 <a href="addproduct.php" target="_blank" class="btn btn-info btn-block">Add a new PRODUCTS</a>
             </div><!-- end panel -->

@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['logged']))
+{
+    header('Location: index.php');
+    exit();
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -18,25 +24,37 @@ session_start();
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="index.php">MagLinker.pl</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> My Account <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="panel.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="addwarehouse.php"><span class="glyphicon glyphicon-home"></span> Add Warehouse</a></li>
-                        <li><a href="addproduct.php"><span class="glyphicon glyphicon-shopping-cart"></span> Add Product</a></li>
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+                                class="glyphicon glyphicon-user"></span> Logged as: <?php echo $_SESSION['username']?> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="panel.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="addwarehouse.php"><span class="glyphicon glyphicon-home"></span> Add Warehouse</a>
+                            </li>
+                            <li><a href="addproduct.php"><span class="glyphicon glyphicon-shopping-cart"></span> Add
+                                    Product</a></li>
+                            <li class="divider"></li>
+                            <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <!--- Header #1 -->
@@ -44,10 +62,13 @@ session_start();
         <div class="col-12-sm">
             <div class="well">
                 <div class="page-header">
-                    <h1>Check our awesome website! <small>Keep your products in one place.</small></h1>
+                    <h1>Check our awesome website!
+                        <small>Keep your products in one place.</small>
+                    </h1>
                 </div><!-- end page-header -->
 
-                <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your products.<br />You can check the tutorial video and just sign up today!</p>
+                <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your
+                    products.<br/>You can check the tutorial video and just sign up today!</p>
 
                 <a href="signup.php" class="btn btn-large btn-primary">Join us today</a>
                 <a href="tutorial.php" class="btn btn-large btn-link">or check our video tutorial first</a>
@@ -58,39 +79,39 @@ session_start();
 
     <div class="row">
         <div class="col-sm-4 feature">
-            <div class="panel">
+            <div class="panel panel-body">
                 <div class="panel-heading">
                     <h3 class="panel-title">Online WAREHOUSE</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_wh.jpg" alt="warehouse" class="img-circle">
 
-                <p>You can create many warehouses to keep order of your products. Simply go directly to warehouse creation form!</p>
+                <p class="pad">You can create many warehouses to keep order of your products. Create one now!</p>
 
                 <a href="addwarehouse.php" target="_blank" class="btn btn-warning btn-block">Create new WAREHOUSE</a>
             </div><!-- end panel -->
         </div><!-- end feature -->
 
         <div class="col-sm-4 feature">
-            <div class="panel">
+            <div class="panel panel-body">
                 <div class="panel-heading">
                     <h3 class="panel-title">Management PANEL</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_mg.jpg" alt="Management" class="img-circle">
 
-                <p>The easiest way to manage your products. Check our management panel!</p>
+                <p class="pad">The easiest way to manage your products. Check our management panel!</p>
 
                 <a href="panel.php" target="_blank" class="btn btn-danger btn-block">Manage your WAREHOUSE</a>
             </div><!-- end panel -->
         </div><!-- end feature -->
 
         <div class="col-sm-4 feature">
-            <div class="panel">
+            <div class="panel panel-body">
                 <div class="panel-heading">
                     <h3 class="panel-title">Many PRODUCTS</h3>
                 </div><!-- end panel-heading -->
                 <img src="images/badges_ap.jpg" alt="New Product" class="img-circle">
 
-                <p>Add a new product to your warehouse, keep all information about it in one place.</p>
+                <p class="pad">Add a new product to your warehouse, keep all information about it in one place.</p>
 
                 <a href="addproduct.php" target="_blank" class="btn btn-info btn-block">Add a new PRODUCTS</a>
             </div><!-- end panel -->
@@ -104,11 +125,11 @@ session_start();
                 <h4>About Us</h4>
                 <p>If you have any further questions contact us:</p>
                 <p>
-                    Phone: (+48) 881 942 510 <br />
-                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br /><br />
-                    Adress <br />
-                    Wilkońskich 5 <br />
-                    62-020 Swarzędz <br />
+                    Phone: (+48) 881 942 510 <br/>
+                    Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br/><br/>
+                    Adress <br/>
+                    Wilkońskich 5 <br/>
+                    62-020 Swarzędz <br/>
                     PL, Poland
                 </p>
             </div><!-- end col-sm-4 -->

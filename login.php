@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_POST['login']) || (!isset($_POST['pass']))) {
-    header('Location: index.php');
+    header('Location: signin.php');
     exit();
 }
 
@@ -33,6 +33,7 @@ if ($connection->connect_errno != 0) {
             $row = $result->fetch_assoc();
             $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
+            $_SESSION['u_group'] = $row['u_group'];
 
             unset($_SESSION['error']);
             $result->close();
@@ -42,13 +43,10 @@ if ($connection->connect_errno != 0) {
         } else {
 
             $_SESSION['error'] = '<span style="color: red">Login or password are incorrect!</span>';
-            header('Location: index.php');
+            header('Location: signin.php');
 
         }
-
     }
-
-
     $connection->close();
 }
 ?>

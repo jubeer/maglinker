@@ -22,69 +22,66 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="index.php">MagLinker.pl</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Page 1-1</a></li>
-                        <li><a href="#">Page 1-2</a></li>
-                        <li><a href="#">Page 1-3</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">API</a></li>
-                <li><a href="panel.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-            </ul>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <!--- Header #1 -->
-    <div class="row" id="bigCallout">
-        <div class="col-12">
+    <div id="content">
+        <!--- Header #1 -->
+        <div class="row">
+            <div class="col-12-sm">
+                <div class="well">
+                    <div class="page-header">
+                        <h1>Check our awesome website!
+                            <small>Keep your products in one place.</small>
+                        </h1>
+                    </div><!-- end page-header -->
 
-            <!-- Visible only on small devices -->
-            <div class="well well-small visible-sm">
-                <a href="" class="btn btn-large btn-block btn-default"><span class="glyphicon glyphicon-phone"></span>
-                    Give us a call!</a>
-            </div><!-- end well-small -->
+                    <p class="lead">We are proud to present our new product which is MagLinker - simple storage for your
+                        products.<br/>You can check the tutorial video and just sign up today!</p>
 
-            <div class="well">
-                <div class="page-header">
-                    <h1>A Fancy Header
-                        <small>A subheader for extra awesome.</small>
-                    </h1>
-                </div><!-- end page-header -->
+                    <a href="signup.php" class="btn btn-large btn-primary">Join us today</a>
+                    <a href="tutorial.php" class="btn btn-large btn-link">or check our video tutorial first</a>
+                </div><!-- end well -->
 
-                <p class="lead">Some solid leading copy will help get your users engaged. Use this area to come up with
-                    something real nice. Know what I'm sayin?</p>
+            </div><!-- end col-12 -->
+        </div><!-- end bigCallout -->
+        <div class="row">
+            <div class="col-12-sm">
+                <form class="form-signin" action="login.php" method="post">
+                    <h2 class="form-signin-heading">Please sign in</h2>
+                    <label for="inputLogin" class="sr-only">Login</label>
+                    <input type="text" name="login" class="form-control" placeholder="Login">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" name="pass" class="form-control" placeholder="Password">
+                    <br/>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <?php
 
-                <a href="" class="btn btn-large btn-primary" id="alertMe">Click a nice big button</a>
-                <a href="" class="btn btn-large btn-link">or a secondary link</a>
-            </div><!-- end well -->
+                    if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
 
-        </div><!-- end col-12 -->
-    </div><!-- end bigCallout -->
-    <div class="container">
-
-        <form class="form-signin" action="login.php" method="post">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputLogin" class="sr-only">Login</label>
-            <input type="text" name="login" class="form-control" placeholder="Login">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="pass" class="form-control" placeholder="Password">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <?php
-
-            if (isset($_SESSION['error'])) echo "<p style='text-align: center'>" . $_SESSION['error'] . "</p>";
-
-            ?>
-        </form>
-
+                    ?>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <footer>
