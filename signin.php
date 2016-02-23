@@ -66,12 +66,12 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
         </div><!-- end bigCallout -->
         <div class="row">
             <div class="col-12-sm">
-                <form class="form-signin" action="login.php" method="post">
+                <form name="myForm" class="form-signin" action="login.php" onsubmit="return(validateLogin());" method="post">
                     <h2 class="form-signin-heading">Please sign in</h2>
                     <label for="inputLogin" class="sr-only">Login</label>
-                    <input type="text" name="login" class="form-control" placeholder="Login">
+                    <input type="text" name="login" class="form-control" placeholder="Login"><span id="errMsg" class="error"></span>
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" name="pass" class="form-control" placeholder="Password">
+                    <input type="password" name="pass" class="form-control" placeholder="Password"><span id="errPass" class="error"></span>
                     <br/>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                     <?php
@@ -130,5 +130,6 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/validate.js"></script>
 </body>
 </html>

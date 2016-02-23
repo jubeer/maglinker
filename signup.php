@@ -3,8 +3,23 @@
 session_start();
 
 if (isset($_POST['username'])) {
+
+    $isOK = true;
+
     require_once "dbconnect.php";
     mysqli_report(MYSQLI_REPORT_STRICT);
+
+    //reCaptcha validation
+    $secret = "6Lfc7BYTAAAAAHDEXcx3Jx84UL0hR3NYW6ZntDuV";
+
+    $check = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+
+    $decode = json_decode($check);
+
+    if ($decode->success == false) {
+        $isOK = false;
+        $_SESSION['e_bot'] = "Prove you are not a bot!";
+    }
 
     $connection = @new mysqli($host, $db_user, $db_password, $db_name);
 
@@ -13,18 +28,13 @@ if (isset($_POST['username'])) {
     } else {
         $username = $_POST['username'];
         $pass1 = $_POST['pass1'];
-        $pass2 = $_POST['pass2'];
-        $email = $_POST['email'];
+        $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
 
-        if ($pass1 == $pass2) {
-            $pass = $pass1;
-        } else {
-            header('Location:signup.php');
-        }
-
-        if ($connection->query("INSERT INTO users VALUES (NULL,'$username', '$pass', '$email', 1)")) {
-            $_SESSION['username'] = true;
-            header('Location:signup.php');
+        if ($isOK == true) {
+            if ($connection->query("INSERT INTO users VALUES (NULL,'$username', '$pass_hash', '$email', 1)")) {
+                $_SESSION['username'] = true;
+                header('Location:signup.php');
+            }
         }
     }
     $connection->close();
@@ -91,24 +101,31 @@ if (isset($_POST['username'])) {
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <form action="signup.php" class="form-signin" method="post">
+                <form name="signupForm" action="signup.php" class="form-signin" onsubmit="return validateSignup(this);"
+                      method="post">
                     <h2>Register for free!</h2>
                     <label for="inputLogin" class="sr-only">Login</label>
-                    <input type="text" name="username" class="form-control" placeholder="Username">
+                    <input type="text" name="username" class="form-control" placeholder="Username"><span id="errMsg"
+                                                                                                         class="error"></span>
                     <label for="inputPassword1" class="sr-only">Password</label>
                     <input type="password" name="pass1" class="form-control" placeholder="Your password">
                     <label for="inputPassword2" class="sr-only">Confirm password</label>
-                    <input type="password" name="pass2" class="form-control" placeholder="Confirm password">
+                    <input type="password" name="pass2" class="form-control" placeholder="Confirm password"><span
+                        id="errPwd"
+                        class="error"></span>
                     <label for="inputEmail" class="sr-only">E-mail</label>
-                    <input type="text" name="email" class="form-control" placeholder="E-mail">
+                    <input type="text" name="email" class="form-control" placeholder="E-mail"><span id="errEM"
+                                                                                                    class="error"></span>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="reg"/> Agree terms.
+                            <input type="checkbox" name="reg"> I agree the Terms.<span id="errChkbx"
+                                                                                       class="error"></span>
                         </label>
                     </div>
-                    <div class="g-recaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
+                    <div class="g-recaptcha" id="rcaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
+                    <span id="captcha" class="error"></span>
                     <br/>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                    <button class="btn btn-lg btn-primary btn-block" onclick="" type="submit">Sign Up</button>
 
                 </form>
 
@@ -118,9 +135,10 @@ if (isset($_POST['username'])) {
                 <h2><span class="glyphicon glyphicon-map-marker"></span> Our Location
                     <small>Visit us if you want to!</small>
                 </h2>
-                <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.6249297394806!2d17.076156556604747!3d52.40117668790244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4704593117239869%3A0x3fed5b30f60be13!2sWilko%C5%84skich+5%2C+62-020+Swarz%C4%99dz%2C+Polska!5e0!3m2!1spl!2sca!4v1454354171280"></iframe>
-
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9736.745022254749!2d17.078207199999998!3d52.40330049999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4704593117239869%3A0x03fed5b30f60be13!2sWilko%C5%84skich+5%2C+62-020+Swarz%C4%99dz!5e0!3m2!1spl!2spl!4v1456169229600&output=embed"
+                    width="100%" height="300" frameborder="0" style="border:0" allowfullscreen
+                "></iframe>
             </div>
         </div>
 
@@ -172,5 +190,6 @@ if (isset($_POST['username'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="js/validate.js"></script>
 </body>
 </html>
