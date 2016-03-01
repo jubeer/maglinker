@@ -9,7 +9,8 @@ if (isset($_POST['username'])) {
     require_once "dbconnect.php";
     
     //reCaptcha validation
-    $secret = "6Ld_VhYTAAAAAEN8rcK-QyM37Fk_aAjfI-9cFgMJ";
+    /*
+    $secret = "6Lfc7BYTAAAAAHDEXcx3Jx84UL0hR3NYW6ZntDuV";
 
     $check = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
 
@@ -19,7 +20,7 @@ if (isset($_POST['username'])) {
         $isOK = false;
         $_SESSION['e_bot'] = "Prove you are not a bot!";
     }
-
+    */
     if (db_connect()) {
 
         $username = $_POST['username'];
@@ -143,10 +144,12 @@ if (isset($_POST['username'])) {
                                                                                        class="error"></span>
                         </label>
                     </div>
+                    <!-- reCAPTCHA
                     <div class="g-recaptcha" id="rcaptcha"
-                         data-sitekey="6Ld_VhYTAAAAADcvIPQGZnEUBTthfKWRHrK6Q3iU"></div>
+                         data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
                     <span id="captcha" class="error"></span>
                     <br/>
+                    -->
                     <button class="btn btn-lg btn-primary btn-block" onclick="" type="submit">Sign Up</button>
 
                 </form>

@@ -104,7 +104,7 @@ function validateSignup() {
     } else {
         errChkbx.innerHTML = '';
     }
-
+    /*
     var v = grecaptcha.getResponse();
     if(v.length == 0)
     {
@@ -116,6 +116,6 @@ function validateSignup() {
         document.getElementById('captcha').innerHTML="Captcha completed";
         return true;
     }
-
+    */
     return true;
 }
