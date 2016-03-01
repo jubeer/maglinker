@@ -2,29 +2,6 @@
 
 session_start();
 
-if (!isset($_SESSION['logged'])) {
-    header('Location: index.php');
-    exit();
-} else {
-    if (isset($_POST['wh_name'])) {
-        require_once "dbconnect.php";
-        if (!db_connect()) {
-            echo "Error: " . $connection->connect_errno;
-        } else {
-            $wh_name = $_POST['wh_name'];
-            $type = $_POST['type'];
-            $wh_description = $_POST['wh_description'];
-            $id_user = $_SESSION['id'];
-
-            if (db_query("INSERT INTO warehouses VALUES (NULL,'$wh_name', '$type', '$wh_description', '$id_user')")) {
-                header('Location:addwarehouse.php');
-            } else {
-                $error = db_error();
-                echo $error;
-            }
-        }
-    }
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -37,7 +14,7 @@ if (!isset($_SESSION['logged'])) {
     <link rel="stylesheet" href="css/css.css">
     <link href="https://file.myfontastic.com/wm2GVTEBGPeHkdyNEkiD2P/icons.css" rel="stylesheet">
 </head>
-<title>MagLinker.pl - Create Warehouse</title>
+<title>MagLinker.pl - Tutorial video</title>
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -62,13 +39,11 @@ if (!isset($_SESSION['logged'])) {
                 <ul class="nav navbar-nav navbar-right">
                     <?php if (isset($_SESSION['logged'])) { ?>
                         <?php if (isset($_SESSION['admin'])) { ?>
-                            <li><a href="mailbox.php"><span class="glyphicon glyphicon-envelope"></span> Mailbox</a>
-                            </li>
+                            <li><a href="mailbox.php"><span class="glyphicon glyphicon-envelope"></span> Mailbox</a></li>
                         <?php } ?>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <span class="glyphicon glyphicon-user"></span> Logged
-                                as: <?php echo $_SESSION['username']; ?>
+                                <span class="glyphicon glyphicon-user"></span> Logged as: <?php echo $_SESSION['username']; ?>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="panel.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
@@ -83,7 +58,7 @@ if (!isset($_SESSION['logged'])) {
                                 <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
                             </ul>
                         </li>
-                    <?php } else { ?>
+                    <?php } else {?>
                         <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
                     <?php } ?>
@@ -91,82 +66,31 @@ if (!isset($_SESSION['logged'])) {
             </div>
         </div>
     </nav>
-    <div class="row">
-        <div class="col-12-sm">
-            <div class="well">
-                <div class="page-header">
-                    <h1>Build your database!
-                        <small>Create a new warehouse.</small>
-                    </h1>
+    <div id="content">
+
+        <div class="row">
+            <div class="col-12-sm">
+                <div class="well">
+                    <div class="page-header">
+                        <h1>Projekt Technologie Informacyjne
+                            <small>Autor poniżej.</small>
+                        </h1>
+                    </div>
+                    <p class="lead">Wojciech Sobiak Informatyka (niestacjonarne)</p>
+                    <p class="lead">Nr albumu: 20974</p>
                 </div>
-                <p class="lead">Fill the form below and store all your warehouse information. </p>
 
             </div>
-
         </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-4">
-            <form action="addwarehouse.php" class="form-custom" method="post">
-                <h2>Add a new warehouse:</h2>
-                <input type="text" name="wh_name" class="form-control" placeholder="Warehouse name"><span
-                    id="nameErrMsg" class="error"></span>
-                <input type="text" name="type" class="form-control" placeholder="Type">
-                <textarea name="wh_description" class="form-control"
-                          placeholder="Describe your warehouse..."></textarea>
-                <br/>
-                <button class="btn btn-lg btn-warning btn-block" type="submit">Create Warehouse</button>
-            </form>
-            <br/>
-        </div>
-        <div class="col-sm-8">
-            <h2>List of your current warehouses:</h2>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th><strong>ID</strong></th>
-                        <th><strong>Name</strong></th>
-                        <th><strong>Type</strong></th>
-                        <th><strong>Description</strong></th>
-                        <th><strong>User</strong></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    require_once "dbconnect.php";
-                    db_connect();
-                    $id_user = $_SESSION['id'];
-                    $rows = db_select("SELECT w.id, w.name, w.type, w.description, users.username as owner FROM warehouses w JOIN users ON users.id=w.id_user WHERE id_user='$id_user' ORDER BY id ASC");
-                    if ($rows === false) {
-                        $error = db_error();
-                        echo $error;
-                    } else {
-
-                        // Fetch all the rows in an array
-                        foreach ($rows as $row) { ?>
-
-                            <tr>
-                                <td><strong><?php echo $row['id'] ?></strong></td>
-                                <td><strong><?php echo $row['name'] ?></strong></td>
-                                <td><strong><?php echo $row['type'] ?></strong></td>
-                                <td><strong><?php echo $row['description'] ?></strong></td>
-                                <td><strong><?php echo $row['owner'] ?></strong></td>
-                            </tr>
-                            <?php
-                        }
-                    }
-                    ?>
-                    </tbody>
-                </table>
+        <div class="row">
+            <div class="col-12-sm text-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9736.745022254749!2d17.078207199999998!3d52.40330049999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4704593117239869%3A0x03fed5b30f60be13!2sWilko%C5%84skich+5%2C+62-020+Swarz%C4%99dz!5e0!3m2!1spl!2spl!4v1456169229600&output=embed"
+                    width="85%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="col-sm-1"></div>
     </div>
 </div>
-
 <footer>
     <div class="container">
         <div class="row">

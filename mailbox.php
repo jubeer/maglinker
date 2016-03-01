@@ -2,28 +2,9 @@
 
 session_start();
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['admin'])) {
     header('Location: index.php');
     exit();
-} else {
-    if (isset($_POST['wh_name'])) {
-        require_once "dbconnect.php";
-        if (!db_connect()) {
-            echo "Error: " . $connection->connect_errno;
-        } else {
-            $wh_name = $_POST['wh_name'];
-            $type = $_POST['type'];
-            $wh_description = $_POST['wh_description'];
-            $id_user = $_SESSION['id'];
-
-            if (db_query("INSERT INTO warehouses VALUES (NULL,'$wh_name', '$type', '$wh_description', '$id_user')")) {
-                header('Location:addwarehouse.php');
-            } else {
-                $error = db_error();
-                echo $error;
-            }
-        }
-    }
 }
 ?>
 
@@ -37,7 +18,7 @@ if (!isset($_SESSION['logged'])) {
     <link rel="stylesheet" href="css/css.css">
     <link href="https://file.myfontastic.com/wm2GVTEBGPeHkdyNEkiD2P/icons.css" rel="stylesheet">
 </head>
-<title>MagLinker.pl - Create Warehouse</title>
+<title>MagLinker.pl - Mailbox</title>
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -95,12 +76,14 @@ if (!isset($_SESSION['logged'])) {
         <div class="col-12-sm">
             <div class="well">
                 <div class="page-header">
-                    <h1>Build your database!
-                        <small>Create a new warehouse.</small>
+                    <h1>This is your mailbox!
+                        <small>Read messages from your Clients.</small>
                     </h1>
                 </div>
-                <p class="lead">Fill the form below and store all your warehouse information. </p>
-
+                <p class="lead">You have : <?php require_once "dbconnect.php";
+                    $count = db_query("SELECT * FROM messages");
+                    $rows = $count->num_rows;
+                    echo $rows; ?> message(s), read them right now!</p>
             </div>
 
         </div>
@@ -108,65 +91,60 @@ if (!isset($_SESSION['logged'])) {
 
 
     <div class="row">
-        <div class="col-sm-4">
-            <form action="addwarehouse.php" class="form-custom" method="post">
-                <h2>Add a new warehouse:</h2>
-                <input type="text" name="wh_name" class="form-control" placeholder="Warehouse name"><span
-                    id="nameErrMsg" class="error"></span>
-                <input type="text" name="type" class="form-control" placeholder="Type">
-                <textarea name="wh_description" class="form-control"
-                          placeholder="Describe your warehouse..."></textarea>
-                <br/>
-                <button class="btn btn-lg btn-warning btn-block" type="submit">Create Warehouse</button>
-            </form>
-            <br/>
-        </div>
-        <div class="col-sm-8">
-            <h2>List of your current warehouses:</h2>
+        <div class="col-sm-12">
+            <h2 class="feature">Your messages:</h2>
             <div class="table-responsive">
+
                 <table class="table table-hover">
                     <thead>
                     <tr>
+                        <th><strong>toDel</strong></th>
                         <th><strong>ID</strong></th>
-                        <th><strong>Name</strong></th>
-                        <th><strong>Type</strong></th>
-                        <th><strong>Description</strong></th>
-                        <th><strong>User</strong></th>
+                        <th><strong>Date</strong></th>
+                        <th><strong>From</strong></th>
+                        <th><strong>Subject</strong></th>
+                        <th><strong>Message</strong></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     require_once "dbconnect.php";
-                    db_connect();
                     $id_user = $_SESSION['id'];
-                    $rows = db_select("SELECT w.id, w.name, w.type, w.description, users.username as owner FROM warehouses w JOIN users ON users.id=w.id_user WHERE id_user='$id_user' ORDER BY id ASC");
+                    $rows = db_select("SELECT * FROM messages WHERE admin='$id_user' ORDER BY ID ASC");
                     if ($rows === false) {
                         $error = db_error();
-                        echo $error;
                     } else {
-
-                        // Fetch all the rows in an array
                         foreach ($rows as $row) { ?>
 
                             <tr>
-                                <td><strong><?php echo $row['id'] ?></strong></td>
-                                <td><strong><?php echo $row['name'] ?></strong></td>
-                                <td><strong><?php echo $row['type'] ?></strong></td>
-                                <td><strong><?php echo $row['description'] ?></strong></td>
-                                <td><strong><?php echo $row['owner'] ?></strong></td>
+                                <td>
+                                    <form action="delete_msg.php" method="post">
+                                        <?php
+                                        echo '<input type="hidden" name="deleteItem" value="' . $row['ID'] . '"/>';
+                                        ?>
+                                        <input type="submit" name="submit" value="Delete"/>
+                                    </form>
+                                </td>
+                                <td><strong><?php echo $row['ID'] ?></strong></td>
+                                <td><strong><?php echo $row['date'] ?></strong></td>
+                                <td><strong><?php echo $row['from'] ?></strong></td>
+                                <td><strong><?php echo $row['subject'] ?></strong></td>
+                                <td><strong><?php echo $row['msg'] ?></strong></td>
                             </tr>
+
                             <?php
                         }
                     }
+
                     ?>
                     </tbody>
                 </table>
+
+
             </div>
         </div>
-        <div class="col-sm-1"></div>
     </div>
 </div>
-
 <footer>
     <div class="container">
         <div class="row">
@@ -187,7 +165,6 @@ if (!isset($_SESSION['logged'])) {
                 <ul class="unstyled">
                     <li><a href="index.php">Home Page</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="tutorial.php">Tutorial</a></li>
                     <li><a href="about.php">About Us</a></li>
                     <li><a href="contact.php">Contact</a></li>
                 </ul>
@@ -205,7 +182,7 @@ if (!isset($_SESSION['logged'])) {
         <div class="row">
             <div class="col-sm-12">
                 <div class="text-center">
-                    <h6>Copyright &copy; 2016 MagLinker.pl</h6>
+                    <h7>Copyright &copy; 2016 MagLinker.pl</h7>
                 </div>
             </div>
         </div>

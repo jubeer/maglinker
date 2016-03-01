@@ -7,8 +7,7 @@ if (isset($_POST['username'])) {
     $isOK = true;
 
     require_once "dbconnect.php";
-    mysqli_report(MYSQLI_REPORT_STRICT);
-
+    
     //reCaptcha validation
     $secret = "6Lfc7BYTAAAAAHDEXcx3Jx84UL0hR3NYW6ZntDuV";
 
@@ -21,23 +20,20 @@ if (isset($_POST['username'])) {
         $_SESSION['e_bot'] = "Prove you are not a bot!";
     }
 
-    $connection = @new mysqli($host, $db_user, $db_password, $db_name);
+    if (db_connect()) {
 
-    if ($connection->connect_errno != 0) {
-        echo "Error: " . $connection->connect_errno;
-    } else {
         $username = $_POST['username'];
         $pass1 = $_POST['pass1'];
         $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
+        $email = $_POST['email'];
 
         if ($isOK == true) {
-            if ($connection->query("INSERT INTO users VALUES (NULL,'$username', '$pass_hash', '$email', 1)")) {
+            if (db_query("INSERT INTO users VALUES (NULL,'$username', '$pass_hash', '$email', 1)")) {
                 $_SESSION['username'] = true;
                 header('Location:signup.php');
             }
         }
     }
-    $connection->close();
 }
 
 ?>
@@ -52,7 +48,7 @@ if (isset($_POST['username'])) {
     <link rel="stylesheet" href="css/css.css">
     <link href="https://file.myfontastic.com/wm2GVTEBGPeHkdyNEkiD2P/icons.css" rel="stylesheet">
 </head>
-<title>MagLinkere.pl - Adding Warehouse</title>
+<title>MagLinker.pl - Sign up page</title>
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -70,12 +66,36 @@ if (isset($_POST['username'])) {
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="tutorial.php">Tutorial</a></li>
                     <li><a href="about.php">About Us</a></li>
                     <li><a href="contact.php">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                    <?php if (isset($_SESSION['logged'])) { ?>
+                        <?php if (isset($_SESSION['admin'])) { ?>
+                            <li><a href="mailbox.php"><span class="glyphicon glyphicon-envelope"></span> Mailbox</a></li>
+                        <?php } ?>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="glyphicon glyphicon-user"></span> Logged as: <?php echo $_SESSION['username']; ?>
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="panel.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="addwarehouse.php"><span class="glyphicon glyphicon-home"></span> Add
+                                        Warehouse</a>
+                                </li>
+                                <li><a href="addproduct.php"><span class="glyphicon glyphicon-shopping-cart"></span> Add
+                                        Product</a></li>
+                                <li class="divider"></li>
+                                <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
+                            </ul>
+                        </li>
+                    <?php } else {?>
+                        <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="signin.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
@@ -88,16 +108,16 @@ if (isset($_POST['username'])) {
                         <h1>Join us right now!
                             <small>Create a new account.</small>
                         </h1>
-                    </div><!-- end page-header -->
+                    </div>
 
                     <p class="lead">We are still in testing phase. Keep in mind that something sometimes
                         can go wrong, we are apologize for any circumstances which can occur in near future. Our service
                         is 100%
                         free.</p>
 
-                </div><!-- end well -->
+                </div>
 
-            </div><!-- end col-12 -->
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
@@ -122,7 +142,8 @@ if (isset($_POST['username'])) {
                                                                                        class="error"></span>
                         </label>
                     </div>
-                    <div class="g-recaptcha" id="rcaptcha" data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
+                    <div class="g-recaptcha" id="rcaptcha"
+                         data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
                     <span id="captcha" class="error"></span>
                     <br/>
                     <button class="btn btn-lg btn-primary btn-block" onclick="" type="submit">Sign Up</button>
@@ -153,21 +174,22 @@ if (isset($_POST['username'])) {
                 <p>
                     Phone: (+48) 881 942 510 <br/>
                     Email: <a href="mailto:contact@wsobiak.pl">contact@wsobiak.pl</a> <br/><br/>
-                    Adress <br/>
+                    Address <br/>
                     Wilkońskich 5 <br/>
                     62-020 Swarzędz <br/>
                     PL, Poland
                 </p>
-            </div><!-- end col-sm-4 -->
+            </div>
             <div class="col-sm-4">
                 <h4>Navigation</h4>
                 <ul class="unstyled">
                     <li><a href="index.php">Home Page</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="tutorial.php">Tutorial</a></li>
                     <li><a href="about.php">About Us</a></li>
                     <li><a href="contact.php">Contact</a></li>
                 </ul>
-            </div><!-- end col-sm-2 -->
+            </div>
 
             <div class="col-sm-4">
                 <h4>Follow Us</h4>
@@ -176,20 +198,19 @@ if (isset($_POST['username'])) {
                     <li><a href="#"><span class="icon-facebook-1"></span> Facebook</a></li>
                     <li><a href="#"><span class="icon-gplus"></span> Google Plus</a></li>
                 </ul>
-            </div><!-- end col-sm-2 -->
-        </div><!-- end row -->
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="text-center">
-                    <h7>Copyright &copy; 2016 MagLinker.pl</h7>
+                    <h6>Copyright &copy; 2016 MagLinker.pl</h6>
                 </div>
-            </div><!-- end col-sm-2 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
+            </div>
+        </div>
+    </div>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="js/validate.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

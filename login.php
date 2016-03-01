@@ -9,44 +9,36 @@ if (!isset($_POST['login']) || (!isset($_POST['pass']))) {
 
 require_once "dbconnect.php";
 
-$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+if (db_connect()) {
 
-if ($connection->connect_errno != 0) {
-    echo "Error " . $connection->connect_errno;
-} else {
-    $user = $_POST['login'];
+    $login = db_quote($_POST['login']);
     $pass = $_POST['pass'];
 
-    $user = htmlentities($user, ENT_QUOTES, "UTF-8");
-    $pass = htmlentities($pass, ENT_QUOTES, "UTF-8");
+    $rows = db_select("SELECT * FROM users WHERE username=$login");
 
+    var_dump($rows);
 
-    if ($result = @$connection->query(
-        sprintf("SELECT * FROM users WHERE username='%s' AND pass='%s'",
-            mysqli_real_escape_string($connection, $user),
-            mysqli_real_escape_string($connection, $pass)))
-    ) {
+    if ($rows == false) {
+        $error = db_error();
+        $_SESSION['error'] = '<span style="color: red">Login or password are incorrect!</span>';
+        header('Location: signin.php');
+    } else if (password_verify($pass, $rows[0]['pass'])) {
 
-        $how_much = $result->num_rows;
-        if ($how_much > 0) {
-            $_SESSION['logged'] = true;
-            $row = $result->fetch_assoc();
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['u_group'] = $row['u_group'];
+        $_SESSION['logged'] = true;
+        $_SESSION['id'] = $rows[0]['id'];
+        $_SESSION['username'] = $rows[0]['username'];
+        $_SESSION['u_group'] = $rows[0]['u_group'];
 
-            unset($_SESSION['error']);
-            $result->close();
-            header('Location: dashboard.php');
-
-
-        } else {
-
-            $_SESSION['error'] = '<span style="color: red">Login or password are incorrect!</span>';
-            header('Location: signin.php');
-
+        if ($_SESSION['u_group'] == 0) {
+            $_SESSION['admin'] = true;
         }
+        unset($_SESSION['error']);
+        header('Location: dashboard.php');
+
+    } else {
+
+        $_SESSION['error'] = '<span style="color: red">Login or password are incorrect!</span>';
+        header('Location: signin.php');
     }
-    $connection->close();
 }
 ?>

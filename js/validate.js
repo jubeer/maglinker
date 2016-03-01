@@ -7,14 +7,18 @@ function validateLogin() {
     if (lg == null || lg == "") {
         errMsg.innerHTML = 'LOGIN must be filled!';
         return false;
-    } else if (!(/^\S{3,}$/.test(lg))) {
+    } else if (!(/^\w+$/.test(lg))) {
         errMsg.innerHTML = 'LOGIN cannot contain whitespaces!';
         return false;
+    } else {
+        errMsg.innerHTML = '';
     }
 
     if (ps == null || ps == "") {
         errPass.innerHTML = 'PASSWORD must be filled!';
         return false;
+    }else {
+        errPass.innerHTML = '';
     }
     return true;
 }
