@@ -9,7 +9,7 @@ if (isset($_POST['username'])) {
     require_once "dbconnect.php";
     
     //reCaptcha validation
-    $secret = "6Lfc7BYTAAAAAHDEXcx3Jx84UL0hR3NYW6ZntDuV";
+    $secret = "6Ld_VhYTAAAAAEN8rcK-QyM37Fk_aAjfI-9cFgMJ";
 
     $check = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
 
@@ -143,7 +143,7 @@ if (isset($_POST['username'])) {
                         </label>
                     </div>
                     <div class="g-recaptcha" id="rcaptcha"
-                         data-sitekey="6Lfc7BYTAAAAADSFJGrYUFBQH2pgdYblKQK8m_5k"></div>
+                         data-sitekey="6Ld_VhYTAAAAADcvIPQGZnEUBTthfKWRHrK6Q3iU"></div>
                     <span id="captcha" class="error"></span>
                     <br/>
                     <button class="btn btn-lg btn-primary btn-block" onclick="" type="submit">Sign Up</button>
