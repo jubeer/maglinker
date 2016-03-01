@@ -46,6 +46,7 @@ if (isset($_POST['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <link href="https://file.myfontastic.com/wm2GVTEBGPeHkdyNEkiD2P/icons.css" rel="stylesheet">
 </head>
 <title>MagLinker.pl - Sign up page</title>
@@ -211,6 +212,6 @@ if (isset($_POST['username'])) {
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/validate.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

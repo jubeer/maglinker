@@ -23,20 +23,6 @@ function validateLogin() {
     return true;
 }
 
-function validatereCaptcha() {
-    var v = grecaptcha.getResponse();
-    if(v.length == 0)
-    {
-        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
-        return false;
-    }
-    if(v.length != 0)
-    {
-        document.getElementById('captcha').innerHTML="Captcha completed";
-        return true;
-    }
-}
-
 function validateSignup() {
     var un = document.forms["signupForm"]["username"].value;
     var em = document.forms["signupForm"]["email"].value;
@@ -96,8 +82,7 @@ function validateSignup() {
     errPwd.innerHTML = '';
 
     if (em != "") {
-        re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //spr = em.match(re);
+        re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
         if (!re.test(em)) {
             errEM.innerHTML = 'E-MAIL syntax error!';
             return false;
