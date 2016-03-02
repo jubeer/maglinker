@@ -10,6 +10,7 @@ if (!isset($_POST['login']) || (!isset($_POST['pass']))) {
 
 //$connection = new mysqli('localhost','root','Q!1qW@2wE#3e','testowa');
 require_once "dbconnect.php";
+mysqli_report(MYSQLI_REPORT_STRICT);
 
 $connection = db_connect();
 
