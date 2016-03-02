@@ -15,7 +15,7 @@ if (db_connect()) {
     $login = db_quote($_POST['login']);
     $pass = $_POST['pass'];
 
-    $rows = db_select("SELECT * FROM 'users'");
+    $rows = db_select("SELECT * FROM testowa");
 
     var_dump($rows);
     var_dump($login);
