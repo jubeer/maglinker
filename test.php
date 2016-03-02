@@ -8,9 +8,9 @@ if (!isset($_POST['login']) || (!isset($_POST['pass']))) {
 }
 
 
-$connection = new mysqli('localhost','root','Q!1qW@2wE#3e','testowa');
+//$connection = new mysqli('localhost','root','Q!1qW@2wE#3e','testowa');
 
-
+$connection = db_connect();
 
 
 if($connection === false) {
