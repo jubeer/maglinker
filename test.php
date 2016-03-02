@@ -23,7 +23,7 @@ if($connection === false) {
 } else {
     echo "success db_connect";
 
-    $rezultat = $connection->query("SELECT * FROM 'test'");
+    $rezultat = $connection->query("SELECT * FROM test");
 
     $row = $rezultat->fetch_assoc();
     //$login = db_quote($_POST['login']);
