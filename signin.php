@@ -89,7 +89,7 @@ if (isset($_SESSION['logged']) && ($_SESSION['logged'] == true)) {
         </div>
         <div class="row">
             <div class="col-12-sm">
-                <form name="myForm" class="form-signin" action="test.php" onsubmit="return(validateLogin());" method="post">
+                <form name="myForm" class="form-signin" action="login.php" onsubmit="return(validateLogin());" method="post">
                     <h2 class="form-signin-heading">Please sign in</h2>
                     <input type="text" name="login" class="form-control" placeholder="Login"><span id="errMsg" class="error"></span>
                     <input type="password" name="pass" class="form-control" placeholder="Password"><span id="errPass" class="error"></span>
