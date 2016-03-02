@@ -18,6 +18,9 @@ if (db_connect()) {
     $rows = db_select("SELECT * FROM 'users'");
 
     var_dump($rows);
+    var_dump($login);
+    var_dump($pass);
+
 
     $error = db_error();
     echo $error;
