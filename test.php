@@ -23,12 +23,13 @@ if($connection === false) {
 
     $rezultat = $connection->query("SELECT * FROM test");
 
+    $row = $rezultat->fetch_assoc();
     //$login = db_quote($_POST['login']);
     //$pass = $_POST['pass'];
 
     //$rows = db_select("SELECT * FROM testowa");
 
-    var_dump($rezultat);
+    var_dump($row);
     //var_dump($login);
     //var_dump($pass);
 
