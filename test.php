@@ -10,7 +10,6 @@ if (!isset($_POST['login']) || (!isset($_POST['pass']))) {
 
 //$connection = new mysqli('localhost','root','Q!1qW@2wE#3e','testowa');
 require_once "dbconnect.php";
-mysqli_report(MYSQLI_REPORT_STRICT);
 
 $connection = db_connect();
 
@@ -23,7 +22,7 @@ if($connection === false) {
 } else {
     echo "success db_connect";
 
-    $rezultat = $connection->query("SELECT * FROM test");
+    $rezultat = db_query("SELECT * FROM test");
 
     $row = $rezultat->fetch_assoc();
     //$login = db_quote($_POST['login']);

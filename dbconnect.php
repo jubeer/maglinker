@@ -6,7 +6,7 @@ function db_connect()
 
     if (!isset($connection)) {
 
-        $config = parse_ini_file('config.ini');
+        $config = parse_ini_file('/srv/http/maglinker/config.ini');
         $connection = mysqli_connect($config['host'], $config['db_user'], $config['db_password'], $config['db_name']);
     }
 
