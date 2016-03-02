@@ -12,14 +12,14 @@ require_once "dbconnect.php";
 if (db_connect()) {
     echo "success db_connect";
 
-    $login = db_quote($_POST['login']);
-    $pass = $_POST['pass'];
+    //$login = db_quote($_POST['login']);
+    //$pass = $_POST['pass'];
 
     $rows = db_select("SELECT * FROM testowa");
 
     var_dump($rows);
-    var_dump($login);
-    var_dump($pass);
+    //var_dump($login);
+    //var_dump($pass);
 
 
     $error = db_error();
